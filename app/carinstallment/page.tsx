@@ -15,7 +15,7 @@ export default function Page() {
 
           {/* Car Image */}
           <div className="flex-shrink-0">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-24 h-24 text-indigo-500" viewBox="0 0 24 24" fill="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-24 h-24 text-orange-500" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2a10 10 0 1010 10A10.011 10.011 0 0012 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
               <path d="M12 10h-2V8h2v2zm-2 4h2v2h-2v-2zm4-4h2v2h-2v-2zm-2 4h2v2h-2v-2z" />
               <circle cx="12" cy="12" r="2" />
@@ -30,7 +30,7 @@ export default function Page() {
               id="name"
               name="name"
               placeholder="ชื่อ-นามสกุล"
-              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"
+              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-150 ease-in-out"
             />
           </div>
 
@@ -42,7 +42,7 @@ export default function Page() {
               id="price"
               name="price"
               placeholder="เช่น 800000"
-              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"
+              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-150 ease-in-out"
             />
           </div>
 
@@ -55,7 +55,7 @@ export default function Page() {
               name="interest"
               placeholder="เช่น 2.5"
               step="0.01"
-              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"
+              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-150 ease-in-out"
             />
           </div>
 
@@ -70,7 +70,7 @@ export default function Page() {
                     id={`down-${value}`}
                     name="down-payment"
                     value={value}
-                    className="text-indigo-600 focus:ring-indigo-500"
+                    className="text-orange-600 focus:ring-orange-500"
                   />
                   <label htmlFor={`down-${value}`} className="ml-2 text-gray-700">{value}%</label>
                 </div>
@@ -84,7 +84,7 @@ export default function Page() {
             <select
               id="loan-term"
               name="loan-term"
-              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out"
+              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-150 ease-in-out"
             >
               {[12, 24, 36, 48, 60, 72].map((term) => (
                 <option value={term} key={term}>{term} เดือน</option>
@@ -95,7 +95,7 @@ export default function Page() {
           {/* Buttons */}
           <div className="w-full flex justify-center space-x-4 pt-4">
             <button
-              className="bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition duration-150 ease-in-out"
+              className="bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 transition duration-150 ease-in-out"
             >
               คำนวณ
             </button>
@@ -109,7 +109,7 @@ export default function Page() {
           {/* Result Display */}
           <div className="w-full text-center pt-4">
             <p className="text-xl font-bold text-gray-800">ยอดผ่อนชำระต่อเดือน:</p>
-            <p id="result" className="text-3xl font-extrabold text-indigo-600 mt-1">0.00</p>
+            <p id="result" className="text-3xl font-extrabold text-orange-600 mt-1">0.00</p>
           </div>
         </div>
       </div>

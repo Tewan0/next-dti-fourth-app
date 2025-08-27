@@ -45,9 +45,25 @@ export default function Page() {
           {/* Subtitle */}
           <p className="text-lg font-medium text-gray-600 -mt-2">คำนวณ BMR ของคุณ</p>
 
+          {/* BMR Image */}
+          <div className="flex-shrink-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-24 h-24 text-teal-500"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+              <path d="M13 7h-2v5H7v2h4v5h2v-5h4v-2h-4z" />
+            </svg>
+          </div>
+
           {/* Input: Weight */}
-          <div className="w-full flex items-center justify-between">
-            <label htmlFor="weight" className="text-sm font-medium text-gray-700">
+          <div className="w-full text-left">
+            <label
+              htmlFor="weight"
+              className="block text-sm font-medium text-gray-700"
+            >
               น้ำหนัก (กิโลกรัม)
             </label>
             <input
@@ -57,14 +73,16 @@ export default function Page() {
               placeholder="เช่น 65"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
-              className="mt-1 w-2/3 px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm 
-                              focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out text-right"
+              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out"
             />
           </div>
 
           {/* Input: Height */}
-          <div className="w-full flex items-center justify-between">
-            <label htmlFor="height" className="text-sm font-medium text-gray-700">
+          <div className="w-full text-left">
+            <label
+              htmlFor="height"
+              className="block text-sm font-medium text-gray-700"
+            >
               ส่วนสูง (เซนติเมตร)
             </label>
             <input
@@ -74,14 +92,16 @@ export default function Page() {
               placeholder="เช่น 170"
               value={height}
               onChange={(e) => setHeight(e.target.value)}
-              className="mt-1 w-2/3 px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm 
-                              focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out text-right"
+              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out"
             />
           </div>
 
           {/* Input: Age */}
-          <div className="w-full flex items-center justify-between">
-            <label htmlFor="age" className="text-sm font-medium text-gray-700">
+          <div className="w-full text-left">
+            <label
+              htmlFor="age"
+              className="block text-sm font-medium text-gray-700"
+            >
               อายุ (ปี)
             </label>
             <input
@@ -91,17 +111,14 @@ export default function Page() {
               placeholder="เช่น 30"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="mt-1 w-2/3 px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm 
-                              focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out text-right"
+              className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition duration-150 ease-in-out"
             />
           </div>
 
           {/* Gender Selection */}
-          <div className="w-full flex items-center justify-between">
-            <label htmlFor="gender" className="text-sm font-medium text-gray-700">
-              เพศ
-            </label>
-            <div className="flex space-x-4">
+          <div className="w-full text-left">
+            <label className="block text-sm font-medium text-gray-700">เพศ</label>
+            <div className="mt-2 flex space-x-4">
               <div className="flex items-center">
                 <input
                   type="radio"
@@ -137,15 +154,13 @@ export default function Page() {
           <div className="w-full flex justify-center space-x-4 pt-4">
             <button
               onClick={calculateBMR}
-              className="bg-teal-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-teal-700 
-                               focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition duration-150 ease-in-out"
+              className="bg-teal-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition duration-150 ease-in-out"
             >
               คำนวณ BMR
             </button>
             <button
               onClick={resetFields}
-              className="bg-gray-400 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-gray-500 
-                               focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 transition duration-150 ease-in-out"
+              className="bg-gray-400 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 transition duration-150 ease-in-out"
             >
               รีเซ็ต
             </button>
