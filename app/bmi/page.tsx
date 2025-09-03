@@ -8,8 +8,17 @@ export default function Page() {
   const [height, setHeight] = useState("");
   const [bmi, setBmi] = useState(0);
 
+  //validate input
+  const validateInput = () => {
+    if (!weight || !height) {
+      alert("กรุณากรอกน้ำหนักและส่วนสูงให้ครบถ้วน");
+      return false;
+    }
+    return true;
+  };
+
   const calculateBMI = () => {
-    if (weight && height) {
+    if (validateInput()) {
       const heightInMeters = parseFloat(height) / 100;
       const bmiValue = parseFloat(weight) / (heightInMeters * heightInMeters);
       setBmi(parseFloat(bmiValue.toFixed(2)));
