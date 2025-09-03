@@ -1,6 +1,44 @@
 'use client';
 
+import { useState } from 'react';
+
 export default function Page() {
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [interest, setInterest] = useState('');
+  const [downPayment, setDownPayment] = useState('15');
+  const [loanTerm, setLoanTerm] = useState('12');
+  const [monthlyPayment, setMonthlyPayment] = useState(0);
+
+  const calculateInstallment = () => {
+    const carPrice = parseFloat(price);
+    const annualInterest = parseFloat(interest);
+    const downPaymentPercent = parseFloat(downPayment);
+    const termMonths = parseInt(loanTerm, 10);
+
+    if (isNaN(carPrice) || isNaN(annualInterest) || carPrice <= 0 || annualInterest < 0) {
+      setMonthlyPayment(0);
+      return;
+    }
+
+    const downPaymentAmount = carPrice * (downPaymentPercent / 100);
+    const loanAmount = carPrice - downPaymentAmount;
+    const totalInterest = (loanAmount * annualInterest / 100) * (termMonths / 12);
+    const totalLoan = loanAmount + totalInterest;
+    const payment = totalLoan / termMonths;
+
+    setMonthlyPayment(payment);
+  };
+
+  const resetFields = () => {
+    setName('');
+    setPrice('');
+    setInterest('');
+    setDownPayment('15');
+    setLoanTerm('12');
+    setMonthlyPayment(0);
+  };
+
   return (
     <div className="bg-gray-100 flex items-center justify-center min-h-screen">
       {/* Main Card Container */}
@@ -30,6 +68,8 @@ export default function Page() {
               id="name"
               name="name"
               placeholder="ชื่อ-นามสกุล"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-150 ease-in-out"
             />
           </div>
@@ -42,6 +82,8 @@ export default function Page() {
               id="price"
               name="price"
               placeholder="เช่น 800000"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
               className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-150 ease-in-out"
             />
           </div>
@@ -55,6 +97,8 @@ export default function Page() {
               name="interest"
               placeholder="เช่น 2.5"
               step="0.01"
+              value={interest}
+              onChange={(e) => setInterest(e.target.value)}
               className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-150 ease-in-out"
             />
           </div>
@@ -70,6 +114,8 @@ export default function Page() {
                     id={`down-${value}`}
                     name="down-payment"
                     value={value}
+                    checked={downPayment === value}
+                    onChange={(e) => setDownPayment(e.target.value)}
                     className="text-orange-600 focus:ring-orange-500"
                   />
                   <label htmlFor={`down-${value}`} className="ml-2 text-gray-700">{value}%</label>
@@ -84,6 +130,8 @@ export default function Page() {
             <select
               id="loan-term"
               name="loan-term"
+              value={loanTerm}
+              onChange={(e) => setLoanTerm(e.target.value)}
               className="mt-1 block w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition duration-150 ease-in-out"
             >
               {[12, 24, 36, 48, 60, 72].map((term) => (
@@ -95,11 +143,13 @@ export default function Page() {
           {/* Buttons */}
           <div className="w-full flex justify-center space-x-4 pt-4">
             <button
+              onClick={calculateInstallment}
               className="bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 transition duration-150 ease-in-out"
             >
               คำนวณ
             </button>
             <button
+              onClick={resetFields}
               className="bg-gray-400 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 transition duration-150 ease-in-out"
             >
               ล้างข้อมูล
@@ -109,7 +159,9 @@ export default function Page() {
           {/* Result Display */}
           <div className="w-full text-center pt-4">
             <p className="text-xl font-bold text-gray-800">ยอดผ่อนชำระต่อเดือน:</p>
-            <p id="result" className="text-3xl font-extrabold text-orange-600 mt-1">0.00</p>
+            <p id="result" className="text-3xl font-extrabold text-orange-600 mt-1">
+              {monthlyPayment > 0 ? monthlyPayment.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00'}
+            </p>
           </div>
         </div>
       </div>
