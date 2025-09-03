@@ -11,24 +11,34 @@ export default function Page() {
   const [loanTerm, setLoanTerm] = useState('12');
   const [monthlyPayment, setMonthlyPayment] = useState(0);
 
-  const calculateInstallment = () => {
-    const carPrice = parseFloat(price);
-    const annualInterest = parseFloat(interest);
-    const downPaymentPercent = parseFloat(downPayment);
-    const termMonths = parseInt(loanTerm, 10);
-
-    if (isNaN(carPrice) || isNaN(annualInterest) || carPrice <= 0 || annualInterest < 0) {
-      setMonthlyPayment(0);
-      return;
+  const validateInput = () => {
+    if (!price || !interest) {
+      alert('กรุณากรอกราคารถและดอกเบี้ยให้ครบถ้วน');
+      return false;
     }
+    return true;
+  };
 
-    const downPaymentAmount = carPrice * (downPaymentPercent / 100);
-    const loanAmount = carPrice - downPaymentAmount;
-    const totalInterest = (loanAmount * annualInterest / 100) * (termMonths / 12);
-    const totalLoan = loanAmount + totalInterest;
-    const payment = totalLoan / termMonths;
+  const calculateInstallment = () => {
+    if (validateInput()) {
+      const carPrice = parseFloat(price);
+      const annualInterest = parseFloat(interest);
+      const downPaymentPercent = parseFloat(downPayment);
+      const termMonths = parseInt(loanTerm, 10);
 
-    setMonthlyPayment(payment);
+      if (isNaN(carPrice) || isNaN(annualInterest) || carPrice <= 0 || annualInterest < 0) {
+        setMonthlyPayment(0);
+        return;
+      }
+
+      const downPaymentAmount = carPrice * (downPaymentPercent / 100);
+      const loanAmount = carPrice - downPaymentAmount;
+      const totalInterest = (loanAmount * annualInterest / 100) * (termMonths / 12);
+      const totalLoan = loanAmount + totalInterest;
+      const payment = totalLoan / termMonths;
+
+      setMonthlyPayment(payment);
+    }
   };
 
   const resetFields = () => {
@@ -175,4 +185,4 @@ export default function Page() {
       </div>
     </div>
   );
-}
+};

@@ -9,8 +9,16 @@ export default function Page() {
   const [gender, setGender] = useState('');
   const [bmr, setBmr] = useState(0);
 
+  const validateInput = () => {
+    if (!weight || !height || !age || !gender) {
+      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      return false;
+    }
+    return true;
+  };
+
   const calculateBMR = () => {
-    if (weight && height && age && gender) {
+    if (validateInput()) {
       const weightValue = parseFloat(weight);
       const heightValue = parseFloat(height);
       const ageValue = parseFloat(age);
@@ -171,7 +179,7 @@ export default function Page() {
           <div className="w-full text-center pt-4">
             <p className="text-xl font-bold text-gray-800">ค่า BMR ที่คำนวณได้:</p>
             <p id="bmrResult" className="text-3xl font-extrabold text-teal-600 mt-1">
-              {bmr}
+              {bmr > 0 ? bmr : '0.00'}
             </p>
           </div>
 
