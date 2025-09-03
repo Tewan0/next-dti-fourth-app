@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Page() {
   const [name, setName] = useState('');
@@ -162,6 +163,13 @@ export default function Page() {
             <p id="result" className="text-3xl font-extrabold text-orange-600 mt-1">
               {monthlyPayment > 0 ? monthlyPayment.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '0.00'}
             </p>
+          </div>
+
+          {/* Back to Home Button */}
+          <div className="w-full text-center pt-4">
+            <Link href="/" className="text-orange-600 hover:underline">
+              กลับหน้าแรก
+            </Link>
           </div>
         </div>
       </div>

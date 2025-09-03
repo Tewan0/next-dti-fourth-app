@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   const [weight, setWeight] = useState("");
@@ -117,6 +118,13 @@ export default function Page() {
             >
               {bmi}
             </p>
+          </div>
+
+          {/* Back to Home Button */}
+          <div className="w-full text-center pt-4">
+            <Link href="/" className="text-blue-600 hover:underline">
+              กลับหน้าแรก
+            </Link>
           </div>
         </div>
       </div>
